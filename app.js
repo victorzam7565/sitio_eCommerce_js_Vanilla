@@ -1,11 +1,11 @@
-const items = document.getElementById('items')
+const cards = document.getElementById('cards')
 const templateCard = document.getElementById('template-card').content
 const fragment = document.createDocumentFragment()
 let carrito = {}
 document.addEventListener('DOMContentLoaded',()=>{
   fetchData()
 } )
-items.addEventListener('click', e =>{
+cards.addEventListener('click', e =>{
    addCarrito(e)
 })
 const fetchData = async () => {
@@ -30,7 +30,7 @@ templateCard.querySelector('.btn-dark').dataset.id= producto.id
     const clone= templateCard.cloneNode(true)
     fragment.appendChild(clone)
   })
-  items.appendChild(fragment)
+  cards.appendChild(fragment)
 }
 const addCarrito = e=> {
   //console.log(e.target)
@@ -46,7 +46,7 @@ const setCarrito = objeto => {
       id: objeto.querySelector('.btn-dark').dataset.id,
       title: objeto.querySelector('h5').textContent,
       precio: objeto.querySelector('p').textContent,
-      cantidad:1
+      cantidad:1s
     }
     if (carrito.hasOwnProperty(producto.id)) {
          producto.cantidad = carrito[producto.id].cantidad + 1
