@@ -1,5 +1,9 @@
 const cards = document.getElementById('cards')
+const items = document.getElementById('items')
+const footer = document.getElementById('footer')
 const templateCard = document.getElementById('template-card').content
+const templateFooter = document.getElementById ('template-footer').content
+const templateCarrito = document.getElementById ('template-carrito').content
 const fragment = document.createDocumentFragment()
 let carrito = {}
 document.addEventListener('DOMContentLoaded',()=>{
@@ -46,12 +50,15 @@ const setCarrito = objeto => {
       id: objeto.querySelector('.btn-dark').dataset.id,
       title: objeto.querySelector('h5').textContent,
       precio: objeto.querySelector('p').textContent,
-      cantidad:1s
+      cantidad: 1
     }
     if (carrito.hasOwnProperty(producto.id)) {
          producto.cantidad = carrito[producto.id].cantidad + 1
     }
     carrito[producto.id] = {...producto}
+     pintarCarrito() 
+}
+const pintarCarrito = ()=> {
+  console.log(carrito)
 
-   console.log(carrito) 
 }
