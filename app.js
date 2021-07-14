@@ -6,9 +6,9 @@ const templateFooter = document.getElementById ('template-footer').content
 const templateCarrito = document.getElementById ('template-carrito').content
 const fragment = document.createDocumentFragment()
 let carrito = {}
-document.addEventListener('DOMContentLoaded',()=>{
+document.addEventListener('DOMContentLoaded',()=> {
   fetchData()
-} )
+})
 cards.addEventListener('click', e =>{
    addCarrito(e)
 })
@@ -24,9 +24,8 @@ const fetchData = async () => {
 }
 
 const pintarCards = data => {
-   console.log(data)
+  //console.log(producto)
   data.forEach(producto => {
-    console.log(producto)
     templateCard.querySelector('h5').textContent = producto.title
     templateCard.querySelector('p').textContent = producto.precio
 templateCard.querySelector('img').setAttribute("src", producto.thumbnailUrl)
@@ -36,7 +35,7 @@ templateCard.querySelector('.btn-dark').dataset.id= producto.id
   })
   cards.appendChild(fragment)
 }
-const addCarrito = e=> {
+const addCarrito = e => {
   //console.log(e.target)
   //console.log(e.target.classList.contains('btn-dark'))
   if(e.target.classList.contains('btn-dark')){
@@ -55,10 +54,19 @@ const setCarrito = objeto => {
     if (carrito.hasOwnProperty(producto.id)) {
          producto.cantidad = carrito[producto.id].cantidad + 1
     }
-    carrito[producto.id] = {...producto}
+    carrito[producto.id] = { ...producto}
      pintarCarrito() 
 }
 const pintarCarrito = ()=> {
   console.log(carrito)
-
+   Object.values(carrito).forEach(producto => {
+      templateCarrito.querySelector('th').textContent = producto.id
+      templateCarrito.querySelectorAll('td')[0].textContent = producto.cantidad
+      templateCarrito.querySelector('.btn-info').dataset.id = produto.id
+      templateCarrito.querySelector('.btn-danger').dataset.id = produto.id
+      templateCarrito.querySelector('span').textConten = producto.cantidad * producto.precio
+       const clone = templateCarrito.cloneNode(true)
+       fragment.appendChlid(clone)
+   })
+   items.appendChild(fragment)
 }
