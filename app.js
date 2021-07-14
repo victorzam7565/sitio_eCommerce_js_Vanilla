@@ -8,6 +8,10 @@ const fragment = document.createDocumentFragment()
 let carrito = {}
 document.addEventListener('DOMContentLoaded',()=> {
   fetchData()
+  if (localStorage.getItem('carrito')){
+     carrito =JSON.parse(localStorage.getItem('carrito'))
+     pintarCarrito()
+  }
 })
 cards.addEventListener('click', e =>{
    addCarrito(e)
@@ -77,6 +81,8 @@ const pintarCarrito = ()=> {
    })
    items.appendChild(fragment)
     pintarFooter ()
+
+    localStorage.setItem('carrito', JSON.stringify(carrito))
     }
     const pintarFooter = () => { 
       footer.innerHTML = ''   
